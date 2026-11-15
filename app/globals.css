@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-manrope), "Segoe UI", sans-serif;
+  --font-display: var(--font-unbounded), "Segoe UI", sans-serif;
+  --color-ink: #10141f;
+  --color-panel: #1a2133;
+  --color-panel-2: #242c42;
+  --color-line: #36425f;
+  --color-cream: #f6f1e7;
+  --color-muted: #aeb6c9;
+  --color-gold: #f0b429;
+  --color-mint: #3ddec0;
+  --color-danger: #ff6b6b;
+  --color-informatics: #3ecbff;
+  --color-math: #c4b5fd;
+  --color-russian: #ff8f6b;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(900px 420px at 50% -12%, rgb(240 180 41 / 18%), transparent 60%),
+    var(--color-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

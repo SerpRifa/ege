@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Тащер">
+  <rect width="240" height="240" rx="36" fill="#121722"/>
+  <rect x="10" y="10" width="220" height="220" rx="30" fill="none" stroke="#ff8f6b" stroke-width="8"/>
+  <circle cx="120" cy="108" r="78" fill="#ff8f6b" opacity="0.16"/>
+  
+      <path d="M70 150 L120 78 L170 150 L150 168 L120 120 L90 168 Z" fill="#7c5cbf"/>
+      <circle cx="120" cy="92" r="36" fill="#f3d2b3"/>
+      <path d="M104 88 L112 96 L104 104" fill="none" stroke="#1b2230" stroke-width="3"/>
+      <path d="M136 88 L128 96 L136 104" fill="none" stroke="#1b2230" stroke-width="3"/>
+      <path d="M110 112 H130" stroke="#1b2230" stroke-width="3" stroke-linecap="round"/>
+  <text x="120" y="214" text-anchor="middle" font-family="Trebuchet MS, sans-serif" font-size="22" font-weight="700" fill="#f6f1e7">Тащер</text>
+</svg>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Шарящий">
+  <rect width="240" height="240" rx="36" fill="#121722"/>
+  <rect x="10" y="10" width="220" height="220" rx="30" fill="none" stroke="#ff8f6b" stroke-width="8"/>
+  <circle cx="120" cy="108" r="78" fill="#ff8f6b" opacity="0.16"/>
+  
+      <circle cx="120" cy="100" r="44" fill="#f3d2b3"/>
+      <circle cx="104" cy="98" r="14" fill="none" stroke="#1b2230" stroke-width="4"/>
+      <circle cx="140" cy="98" r="14" fill="none" stroke="#1b2230" stroke-width="4"/>
+      <path d="M118 98 H126" stroke="#1b2230" stroke-width="4"/>
+      <circle cx="104" cy="98" r="3" fill="#1b2230"/>
+      <circle cx="140" cy="98" r="3" fill="#1b2230"/>
+      <path d="M108 122 Q120 128 134 118" fill="none" stroke="#1b2230" stroke-width="3" stroke-linecap="round"/>
+  <text x="120" y="214" text-anchor="middle" font-family="Trebuchet MS, sans-serif" font-size="22" font-weight="700" fill="#f6f1e7">Шарящий</text>
+</svg>
