@@ -1,7 +1,7 @@
 import { achievements, entryXp, subjectTitle } from "@/config/game";
 import { appToday } from "@/lib/game/clock";
 import { buildCharts } from "@/lib/game/charts";
-import { buildSnapshot, statusLadder } from "@/lib/game/progress";
+import { buildSnapshot, statusLadder, summarizeSubjects } from "@/lib/game/progress";
 import { todayObligation } from "@/lib/game/schedule";
 import type { GameEntry, SubjectId } from "@/lib/game/types";
 import { requireUser } from "@/lib/auth/current";
@@ -60,6 +60,7 @@ export async function getDashboard() {
     today,
     snapshot,
     todaySlot: todayObligation(gameEntries, today),
+    subjectStats: summarizeSubjects(gameEntries),
     recentEntries: entries.slice(0, 8).map(toPublic),
     todayEntries: entries.filter((entry) => entry.date === today).map(toPublic),
   };

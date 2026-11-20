@@ -6,6 +6,7 @@ import {
   upsertEntry,
 } from "@/lib/server/queries";
 import type { EntryMutationResult } from "@/lib/server/progress-service";
+import { describeError } from "@/lib/log";
 import { InputError } from "@/lib/server/validation";
 
 export type MutationState =
@@ -15,7 +16,9 @@ export type MutationState =
 function failure(error: unknown): { ok: false; error: string } {
   if (isRedirect(error)) throw error;
   if (error instanceof InputError) return { ok: false, error: error.message };
-  return { ok: false, error: "Не удалось сохранить занятие" };
+  console.error("[entries] failed", describeError(error));
+  const message = error instanceof Error ? error.message : String(error);
+  return { ok: false, error: `Не удалось сохранить занятие. ${message}` };
 }
 
 function isRedirect(error: unknown): boolean {

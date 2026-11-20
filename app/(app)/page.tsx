@@ -4,7 +4,14 @@ import { XpBar } from "@/components/xp-bar";
 import { isoWeekday } from "@/lib/game/dates";
 import { getDashboard } from "@/lib/server/queries";
 import { weekdayNames } from "@/lib/ui/format";
+import type { SubjectId } from "@/lib/game/types";
 import Link from "next/link";
+
+const subjectDot: Record<SubjectId, string> = {
+  informatics: "bg-informatics",
+  math: "bg-math",
+  russian: "bg-russian",
+};
 
 export default async function HomePage() {
   const data = await getDashboard();
@@ -57,6 +64,48 @@ export default async function HomePage() {
         >
           Записать занятие
         </Link>
+      </section>
+
+      <section className="overflow-hidden rounded-3xl border border-line bg-panel">
+        <h2 className="px-4 pt-4 font-display text-2xl">Задания и очки</h2>
+        <div className="overflow-x-auto">
+          <table className="w-full min-w-[20rem] border-collapse text-left">
+            <caption className="sr-only">Сколько заданий выполнено и сколько очков набрано по каждому предмету</caption>
+            <thead>
+              <tr className="text-sm text-muted">
+                <th scope="col" className="px-4 py-3 font-medium">Предмет</th>
+                <th scope="col" className="px-4 py-3 text-right font-medium">Заданий</th>
+                <th scope="col" className="px-4 py-3 text-right font-medium">Очки</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.subjectStats.map((row) => (
+                <tr key={row.subject} className="border-t border-line">
+                  <th scope="row" className="px-4 py-3 font-medium">
+                    <span className="flex items-center gap-2">
+                      <span className={`h-2.5 w-2.5 shrink-0 rounded-full ${subjectDot[row.subject]}`} aria-hidden />
+                      {row.subject === "math" ? "Математика" : row.title}
+                    </span>
+                    <span className="mt-1 block text-sm font-normal text-muted">
+                      A {row.countA} · B {row.countB} · C {row.countC}
+                    </span>
+                  </th>
+                  <td className="px-4 py-3 text-right tabular-nums">{row.tasks}</td>
+                  <td className="px-4 py-3 text-right tabular-nums">{row.xp} XP</td>
+                </tr>
+              ))}
+            </tbody>
+            <tfoot>
+              <tr className="border-t border-line font-medium">
+                <th scope="row" className="px-4 py-3">Всего</th>
+                <td className="px-4 py-3 text-right tabular-nums">
+                  {data.subjectStats.reduce((sum, row) => sum + row.tasks, 0)}
+                </td>
+                <td className="px-4 py-3 text-right tabular-nums">{overall.totalXp} XP</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
       </section>
 
       <div className="grid gap-3 sm:grid-cols-3">

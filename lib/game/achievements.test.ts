@@ -45,7 +45,7 @@ describe("ачивки", () => {
 
   it("отличает одного гигачада от трёх", () => {
     const one = buildSnapshot(
-      [entry("russian", "2026-11-12", { countC: 64 })],
+      [entry("russian", "2026-11-12", { countC: 161 })],
       "2026-11-12",
     );
     expect(one.subjects.russian.statusId).toBe("gigachad");
@@ -54,9 +54,9 @@ describe("ачивки", () => {
 
     const all = buildSnapshot(
       [
-        entry("informatics", "2026-11-09", { countC: 64 }),
-        entry("math", "2026-11-11", { countC: 64 }),
-        entry("russian", "2026-11-12", { countC: 64 }),
+        entry("informatics", "2026-11-09", { countC: 161 }),
+        entry("math", "2026-11-11", { countC: 161 }),
+        entry("russian", "2026-11-12", { countC: 161 }),
       ],
       "2026-11-12",
     );

@@ -1,7 +1,7 @@
 import { config as loadEnv } from "dotenv";
 import { eq } from "drizzle-orm";
 import { hashPassword } from "../lib/auth/password";
-import { getDb } from "../lib/db/client";
+import { closeDb, getDb } from "../lib/db/client";
 import { users } from "../lib/db/schema";
 
 loadEnv({ path: ".env.local" });
@@ -64,8 +64,12 @@ async function main() {
   }
 }
 
-main().catch((error: unknown) => {
-  const message = error instanceof Error ? error.message : "seed failed";
-  console.error(message);
-  process.exit(1);
-});
+main()
+  .catch((error: unknown) => {
+    const message = error instanceof Error ? error.message : "seed failed";
+    console.error(message);
+    process.exitCode = 1;
+  })
+  .finally(async () => {
+    await closeDb();
+  });

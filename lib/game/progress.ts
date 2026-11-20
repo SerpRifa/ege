@@ -4,6 +4,7 @@ import {
   statusTitle,
   statuses,
   subjectIds,
+  subjectTitle,
   xpToNext,
 } from "@/config/game";
 import { computeStreak } from "@/lib/game/streak";
@@ -70,6 +71,39 @@ export function subjectTotalXp(entries: readonly GameEntry[], subject: SubjectId
     if (entry.subject !== subject) return sum;
     return sum + entryXp(entry);
   }, 0);
+}
+
+export type SubjectTaskSummary = {
+  subject: SubjectId;
+  title: string;
+  tasks: number;
+  countA: number;
+  countB: number;
+  countC: number;
+  xp: number;
+};
+
+export function summarizeSubjects(entries: readonly GameEntry[]): SubjectTaskSummary[] {
+  return subjectIds.map((subject) => {
+    let countA = 0;
+    let countB = 0;
+    let countC = 0;
+    for (const entry of entries) {
+      if (entry.subject !== subject) continue;
+      countA += entry.countA;
+      countB += entry.countB;
+      countC += entry.countC;
+    }
+    return {
+      subject,
+      title: subjectTitle(subject),
+      tasks: countA + countB + countC,
+      countA,
+      countB,
+      countC,
+      xp: entryXp({ countA, countB, countC }),
+    };
+  });
 }
 
 export function trackFromXp(totalXp: number, track: TrackId): TrackProgress {
